@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('judul_artikel',50);
             $table->text('isi_artikel');
-            $table->integer('id_penulis');
+            $table->unsignedBigInteger('id_penulis');
             $table->date('tanggal');
             $table->timestamps();
 
-            $table->foreign('id')->references('id')->on('table_penulis');
+            $table->foreign('id_penulis')->references('id')->on('table_penulis');
         });
     }
 
