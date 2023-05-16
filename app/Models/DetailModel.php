@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class DetailModel extends Model
 {
     use HasFactory;
+    protected $table = "table_detail";
+    
+    protected $fillable = [
+        'id_artikel','id_komentar'
+    ];
 }
