@@ -17,8 +17,8 @@ return new class extends Migration
             $table->unsignedBigInteger('id_komentar');
             $table->timestamps();
 
-            $table->foreign('id_artikel')->references('id')->on('table_artikel');
-            $table->foreign('id_komentar')->references('id')->on('table_komentar');
+            $table->foreign('id_artikel')->references('id')->on('table_artikel')->cascadeOnDelete();
+            $table->foreign('id_komentar')->references('id')->on('table_komentar')->cascadeOnDelete();
         });
     }
 

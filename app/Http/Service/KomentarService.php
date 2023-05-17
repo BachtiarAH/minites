@@ -32,6 +32,5 @@ class KomentarService extends Service{
         $this->komentar->get();
     }
 
-    
 
 }

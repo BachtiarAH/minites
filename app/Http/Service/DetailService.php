@@ -28,7 +28,7 @@ class DetailService extends Service{
         return DB::table('table_detail')
                     ->join('table_artikel','table_artikel.id','=','table_detail.id_artikel')
                     ->join('table_komentar','table_komentar.id','=','table_detail.id_komentar')
-                    ->select();
+                    ->select()->get();
     }
 
     

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('username',50);
             $table->string('password',10);
+            $table->enum('status', ['aktif', 'tidak aktif']);
             $table->timestamps();
         });
     }

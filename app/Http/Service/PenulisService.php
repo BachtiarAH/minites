@@ -2,6 +2,7 @@
 namespace App\Http\Service;
 
 use App\Models\PenulisModel;
+use Exception;
 
 class PenulisService extends Service{
     protected $penulis;
@@ -14,7 +15,8 @@ class PenulisService extends Service{
     {
         return $this->penulis->create([
             'username'=>$username,
-            'password'=>$password
+            'password'=>$password,
+            'status'=>'tidak aktif'
         ]);
     }
 
@@ -28,12 +30,29 @@ class PenulisService extends Service{
         return $this->penulis->where('username',$username)->first();
     }
 
-    public function update($id, $username, $password)
+    public function update($id, $username, $password, $status)
     {
         return $this->penulis->find($id)->update([
             'username'=>$username,
-            'password'=>$password
+            'password'=>$password,
+            'penulis'=>$status
         ]);
+    }
+
+    public function updateWithoutPassword($id, $username, $status)
+    {
+        try {
+            $this->penulis->find($id)->update([
+                'username'=>$username,
+                'status'=>$status
+            ]);
+    
+            // dd($res->toSql());
+    
+            return true;
+        } catch (Exception $th) {
+            return false;
+        }
     }
 
     public function delete($id)

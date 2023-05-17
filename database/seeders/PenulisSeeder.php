@@ -20,6 +20,7 @@ class PenulisSeeder extends Seeder
         DB::table('table_penulis')->insert([
             'username' => $faker->userName(5,50),
             'password' => $faker->password(5,10),
+            'status'=> 'aktif'
         ]);
 }
 }

@@ -11,6 +11,6 @@ class PenulisModel extends Model
     protected $table = "table_penulis";
     
     protected $fillable = [
-        'username','password'
+        'username','password','status'
     ];
 }

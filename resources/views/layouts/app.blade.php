@@ -11,9 +11,23 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.3.0/chart.min.js" integrity="sha512-mlz/Fs1VtBou2TrUkGzX4VoGvybkD9nkeXWJm3rle0DPHssYYx4j+8kIS15T78ttGfmOjH0lLaBXGcShaVkdkg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        function getDatafromTr(Tr) {
+        elements = Tr.getElementsByTagName("td");
+        stringData = [];
+        for (let index = 0; index < elements.length; index++) {
+            stringData[index] = elements[index].innerText;
+        }
+
+        return stringData
+    }
+    </script>
 </head>
 <body>
     @yield('body')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+    <script>$(document).ready(function() {
+        $('#table-artikel').DataTable();
+    });</script>
 </body>
 </html>

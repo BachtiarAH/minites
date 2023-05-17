@@ -3,6 +3,7 @@
 namespace App\Http\Service;
 
 use App\Models\ArtikelModel;
+use Illuminate\Support\Facades\DB;
 
 class ArtikelService extends Service
 {
@@ -27,10 +28,25 @@ class ArtikelService extends Service
     {
         return $this->artikel->get();
     }
+    
+    public function findAllWithPenulis()
+    {
+        return DB::table('table_artikel')
+        ->join('table_penulis', 'table_penulis.id', '=', 'table_artikel.id_penulis')
+        ->select('table_artikel.judul_artikel AS judul', 'table_penulis.username AS penulis', 'table_artikel.tanggal')->get();
+    }
+
+    public function findByPenulis($idPenulis)
+    {
+        return DB::table('table_artikel')
+        ->join('table_penulis', 'table_penulis.id', '=', 'table_artikel.id_penulis')
+        ->select('table_artikel.judul_artikel AS judul', 'table_penulis.username AS penulis', 'table_artikel.tanggal', 'table_artikel.id_penulis','table_artikel.id')
+        ->where('table_artikel.id_penulis','=',$idPenulis)->get();
+    }
 
     public function findById($id)
     {
-        return $this->artikel->find($id);
+        return $this->artikel->where('id',$id)->first();
     }
 
     public function findByJudul($judul)
@@ -50,6 +66,6 @@ class ArtikelService extends Service
 
     public function delete($id)
     {
-        return $this->artikel->find($id)->delete();
+        return $this->artikel->where('id',$id)->delete();
     }
 }

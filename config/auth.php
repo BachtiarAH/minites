@@ -40,6 +40,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'penulis' => [
+            'driver' => 'session',
+            'provider' => 'penulis',
+        ],
     ],
 
     /*
@@ -63,6 +67,10 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+        ],
+        'penulis' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\PenulisModel::class,
         ],
 
         // 'users' => [
