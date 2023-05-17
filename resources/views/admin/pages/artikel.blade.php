@@ -21,6 +21,7 @@
                 </tr>
             </thead>
             <tbody>
+                {{-- {{dd($artikels)}} --}}
                 @foreach($artikels as $key => $value)
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                     <td class="px-6 py-4">
@@ -33,8 +34,7 @@
                         {{$value->tanggal}}
                     </td>
                     <td class="px-6 py-4 text-right">
-                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                        <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Delete</a>
+                        <a href="{{route('artikel',['id'=>$value->id])}}" target="blank" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">show Artikel</a>
                     </td>
                 </tr>
                 @endforeach
@@ -44,4 +44,6 @@
     </div>
 
 </main>
+
+
 @endsection

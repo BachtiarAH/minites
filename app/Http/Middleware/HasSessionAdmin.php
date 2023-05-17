@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class HasSession
+class HasSessionAdmin
 {
     /**
      * Handle an incoming request.
@@ -15,21 +15,21 @@ class HasSession
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (session()->has('id') && $this->isRolePenulis()) {
+        if (session()->has('id') && $this->isRoleAdmin()) {
             return $next($request);
         }else{
-            return redirect(route('penulis.auth.login.page'))->with([
+            return redirect(route('admin.auth.login.page'))->with([
                 'status'=>'fail',
                 'message'=>'session tidak ada'
             ]);
         }
-        
     }
 
-    public function isRolePenulis():bool
+    public function isRoleAdmin():bool
     {
         if (session()->has('role')) {
-            if (session('role')=='penulis') {
+            if (session('role')=='admin') {
+                // dd(true);
                 return true;
             }else{
                 return false;

@@ -33,7 +33,7 @@ class ArtikelService extends Service
     {
         return DB::table('table_artikel')
         ->join('table_penulis', 'table_penulis.id', '=', 'table_artikel.id_penulis')
-        ->select('table_artikel.judul_artikel AS judul', 'table_penulis.username AS penulis', 'table_artikel.tanggal')->get();
+        ->select('table_artikel.judul_artikel AS judul', 'table_penulis.username AS penulis', 'table_artikel.tanggal','table_artikel.id')->get();
     }
 
     public function findByPenulis($idPenulis)

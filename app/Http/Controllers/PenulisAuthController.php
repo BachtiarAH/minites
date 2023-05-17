@@ -30,10 +30,10 @@ class PenulisAuthController extends Controller
 
         if (isset($res)) {
 
-            if ($res->password == $password ) {
+            if ($res->password == $password) {
                 if ($res->status == "aktif") {
 
-                    session(['id' => $res->id,'username'=>$res->username,'status'=>$res->status]);
+                    session(['id' => $res->id, 'username' => $res->username, 'status' => $res->status,'role'=>'penulis']);
                     return redirect(route('penulis.dashboard'))->with([
                         'status' => 'success',
                         'message' => 'Berhasil melakukan login sebagai penulis'
@@ -69,7 +69,7 @@ class PenulisAuthController extends Controller
         $username = $request->get('username');
         $password = $request->get('password');
         $confirmPassword = $request->get('confirm-password');
-        
+
         if ($password == $confirmPassword) {
             $find = $this->servicePenulis->findByUsername($username);
             if (isset($find)) {
@@ -78,7 +78,7 @@ class PenulisAuthController extends Controller
                     'message' => 'gagal mendaftarkan akun, username sudah digunakan'
                 ]);
             }
-            $res = $this->servicePenulis->create($username,$password);
+            $res = $this->servicePenulis->create($username, $password);
             if (isset($res)) {
                 return redirect(route('penulis.auth.login.page'))->with(
                     [
@@ -94,17 +94,30 @@ class PenulisAuthController extends Controller
                     ]
                 );
             }
-            
         } else {
             return back()->with(
                 [
                     'status' => 'danger',
                     'message' => 'confir password salah'
                 ]
-                );
+            );
         }
-        
     }
 
-   
+    public function logout()
+    {
+        if (session_reset()) {
+            return redirect(route('penulis.auth.login.page'))->with(
+                [
+                    'status' => 'success',
+                    'message' => 'Berhasil logout'
+                ]
+            );
+        } else {
+            return back()->with([
+                'status' => 'fail',
+                'message' => 'gagal logout'
+            ]);
+        }
+    }
 }
