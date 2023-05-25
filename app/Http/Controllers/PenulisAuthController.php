@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Service\PenulisService;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -106,18 +107,19 @@ class PenulisAuthController extends Controller
 
     public function logout()
     {
-        if (session_reset()) {
-            return redirect(route('penulis.auth.login.page'))->with(
-                [
-                    'status' => 'success',
-                    'message' => 'Berhasil logout'
-                ]
-            );
-        } else {
+        try {
+            session()->forget(['id','username']);
+            return redirect(route('admin.auth.login.page'))->with(
+                        [
+                            'status' => 'success',
+                            'message' => 'Berhasil logout'
+                        ]
+                    );
+        } catch (Exception $th) {
             return back()->with([
-                'status' => 'fail',
-                'message' => 'gagal logout'
-            ]);
+                        'status' => 'fail',
+                        'message' => 'gagal logout, '.$th
+                    ]);
         }
     }
 }

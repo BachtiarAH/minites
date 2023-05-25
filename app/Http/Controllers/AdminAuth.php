@@ -55,7 +55,7 @@ class AdminAuth extends Controller
 
     public function logout()
     {
-        // if (session_reset()) {
+        // if () {
         //     return redirect(route('penulis.auth.login.page'))->with(
         //         [
         //             'status' => 'success',
@@ -69,7 +69,7 @@ class AdminAuth extends Controller
         //     ]);
         // }
         try {
-            Session::flush();
+            session()->forget(['id','username']);
             return redirect(route('admin.auth.login.page'))->with(
                         [
                             'status' => 'success',

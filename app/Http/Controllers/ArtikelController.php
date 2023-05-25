@@ -33,7 +33,7 @@ class ArtikelController extends Controller
         // dd($request);
         $judul = $request->get('judul');
         $artikel = $request->get('artikel');
-        $res = $this->artikelService->create($judul,$artikel,2,now());
+        $res = $this->artikelService->create($judul,$artikel,$request->session()->get('id'),date('Y-m-d'));
         // dd($this->artikelService->create($judul,$artikel,2,now()));
 
         if (isset($res)) {

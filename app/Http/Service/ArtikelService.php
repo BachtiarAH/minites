@@ -16,6 +16,7 @@ class ArtikelService extends Service
 
     public function create($judul,$isi,$idPenulis,$tanggal)
     {
+        // dd($idPenulis);
         return $this->artikel->create([
             'judul_artikel'=>$judul,
             'isi_artikel'=>$isi,
