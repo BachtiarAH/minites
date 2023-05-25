@@ -33,9 +33,9 @@
                     <td class="px-6 py-4">
                         {{$value->tanggal}}
                     </td>
-                    <td class="px-6 py-4 text-right">
-                        <a href="{{route('artikel',['id'=>$value->id])}}" target="blank" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">show Artikel</a>
-                        <a href="{{route('penulis.artikel.edit',['id'=>$value->id])}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                    <td class="px-6 py-4 text-right flex justify-evenly">
+                        <a href="{{route('artikel',['id'=>$value->id])}}" target="blank" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">show Artikel</a><span>|</span>
+                        <a href="{{route('penulis.artikel.edit',['id'=>$value->id])}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a><span>|</span>
                         <button data-id="{{$value->id}}" onclick="setDelete(this)" class="font-medium text-red-600 dark:text-red-500 hover:underline" data-modal-target="popup-modal" data-id="{{$value->id}}" data-modal-toggle="popup-modal">delete</button>
                     </td>
                 </tr>
